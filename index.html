@@ -109,7 +109,7 @@
   (async () => {
     for (const [k, s] of S.entries()){
       const key = SET + "_" + s.id;
-      const buf = await (await fetch(`pack/${key}.pack.webp`)).arrayBuffer();
+      const buf = await (await fetch(`${key}.pack.webp`)).arrayBuffer();
       await Promise.all(IDX[key].map(([o, len], i) => new Promise(res => {
         const im = new Image(); im.decoding = "async";
         im.onload = im.onerror = () => { s.imgs[i] = im; dirty = true; res(); };
