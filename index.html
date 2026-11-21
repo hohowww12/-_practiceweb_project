@@ -35,14 +35,19 @@
   .dots i{width:6px;height:6px;border-radius:50%;background:rgba(43,26,18,.22);transition:background .3s,transform .3s}
   .dots i.on{background:var(--ink);transform:scale(1.4)}
   /* 첫 화면 스크롤 안내: 떨어지는 선 */
-  .hintShade{position:absolute;inset:auto 0 0 0;height:30%;z-index:3;pointer-events:none;transition:opacity .6s;
-    background:linear-gradient(rgba(30,18,10,0),rgba(30,18,10,.45))}
-  .hint{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom) + 22px);transform:translateX(-50%);z-index:4;
-    display:flex;flex-direction:column;align-items:center;gap:12px;color:#fff;font-size:10px;letter-spacing:.32em;
-    text-shadow:0 1px 6px rgba(0,0,0,.35);transition:opacity .6s;pointer-events:none}
-  .hint i{position:relative;display:block;width:1px;height:56px;background:rgba(255,255,255,.35);overflow:hidden}
-  .hint i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:#fff;animation:hintDrop 1.8s cubic-bezier(.6,0,.3,1) infinite}
+  .hintShade{position:absolute;inset:auto 0 0 0;height:38%;z-index:3;pointer-events:none;transition:opacity .6s;
+    background:linear-gradient(rgba(30,18,10,0),rgba(30,18,10,.62))}
+  /* 스크롤 안내: 글씨를 키우고 굵게, 선을 두껍고 길게, 글씨는 천천히 숨쉬듯 깜빡여 눈에 띄게 */
+  .hint{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom) + 30px);transform:translateX(-50%);z-index:4;
+    display:flex;flex-direction:column;align-items:center;gap:14px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.34em;
+    padding:14px 18px 16px calc(18px + .34em);border-radius:40px;background:rgba(30,18,10,.34);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);
+    text-shadow:0 1px 8px rgba(0,0,0,.45);transition:opacity .6s;pointer-events:none}
+  .hint b{font-weight:600;animation:hintPulse 1.8s ease-in-out infinite}
+  .hint i{position:relative;display:block;width:2px;height:64px;border-radius:2px;background:rgba(255,255,255,.4);overflow:hidden;box-shadow:0 0 6px rgba(0,0,0,.25)}
+  .hint i::after{content:"";position:absolute;left:0;top:-40%;width:2px;height:40%;background:#fff;animation:hintDrop 1.8s cubic-bezier(.6,0,.3,1) infinite}
   @keyframes hintDrop{to{top:100%}}
+  @keyframes hintPulse{0%,100%{opacity:1}50%{opacity:.55}}
   .loader{position:fixed;inset:0;z-index:20;background:var(--cream);display:grid;place-items:center;font-family:var(--serif);letter-spacing:.2em;color:var(--muted);transition:opacity .6s}
   .loader.done{opacity:0;pointer-events:none}
   .after{padding:18vh 6vw;background:var(--ink);color:var(--cream)}
@@ -76,7 +81,7 @@
     <div class="txt p-only" data-t=".57,.63"><small>04 — INSIDE</small><h2>More apple<br>than pie.</h2><p>갈라 보세요. 실망시키지 않습니다.</p></div>
     <div class="txt d-top" data-t=".95,1.01" data-last="1"><small>05 — SUNDAY</small><h2>Every day,<br>a Sunday.</h2><p>매일을 일요일처럼.</p><a class="btn" href="#after">주문하기 →</a></div>
     <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="hintShade" id="hintShade"></div><div class="hint" id="hint">SCROLL<i></i></div>
+    <div class="hintShade" id="hintShade"></div><div class="hint" id="hint"><b>SCROLL</b><i></i></div>
   </div>
 </section>
 <section class="after" id="after">
